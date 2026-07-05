@@ -1,6 +1,9 @@
 package com.springboot.spring_boot_app.dto.request;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.springboot.spring_boot_app.entity.User;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,8 +19,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiResponse <T> {
+    @Builder.Default
     int code = 1000;
-    String message = "User has been created";
+    String message;
     T result;
 
 }
