@@ -1,9 +1,7 @@
 package com.springboot.spring_boot_app.service;
 
-import java.security.SignedObject;
 import java.text.ParseException;
 import java.time.Instant;
-import java.time.chrono.ChronoLocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -20,7 +18,6 @@ import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.Payload;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
-import com.nimbusds.jwt.JWTClaimNames;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import com.springboot.spring_boot_app.dto.request.AuthenticationRequest;

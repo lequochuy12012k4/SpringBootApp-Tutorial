@@ -1,14 +1,10 @@
 package com.springboot.spring_boot_app.controller;
 
-import com.springboot.spring_boot_app.repository.UserRepositoty;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.springboot.spring_boot_app.dto.request.ApiResponse;
 import com.springboot.spring_boot_app.dto.request.UserCreationRequest;
 import com.springboot.spring_boot_app.dto.request.UserUpdateRequest;
-import com.springboot.spring_boot_app.dto.response.UserResponse;
 import com.springboot.spring_boot_app.entity.User;
 import com.springboot.spring_boot_app.service.UserService;
 

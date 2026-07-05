@@ -1,10 +1,6 @@
 package com.springboot.spring_boot_app.dto.request;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.springboot.spring_boot_app.entity.User;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
