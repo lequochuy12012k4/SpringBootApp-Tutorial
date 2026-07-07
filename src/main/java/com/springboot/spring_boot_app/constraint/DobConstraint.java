@@ -7,12 +7,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.springboot.spring_boot_app.validator.DobValidator;
-
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(
-   validatedBy = {DobValidator.class}
+   validatedBy = {}
 )
 public @interface DobConstraint {
     String message() default "Invalid date of birth";

@@ -1,9 +1,8 @@
 package com.springboot.spring_boot_app.dto.request;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
-import com.springboot.spring_boot_app.constraint.DobConstraint;
+import com.springboot.spring_boot_app.entity.Permission;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,12 +16,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserUpdateRequest {
-    String password;
-    String firstName;
-    String lastName;
-    // @DobConstraint(min=2,message = "INVALID_DOB")
-    LocalDate doB;
-    List<String> roles;
+public class RoleRequest {
+    String name;
+    String description;
+    Set<String> permissions;
 }
-

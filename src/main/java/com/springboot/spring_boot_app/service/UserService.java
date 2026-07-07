@@ -1,13 +1,11 @@
 package com.springboot.spring_boot_app.service;
 
-import java.security.Security;
 import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +15,7 @@ import com.springboot.spring_boot_app.entity.User;
 import com.springboot.spring_boot_app.enums.Role;
 import com.springboot.spring_boot_app.exception.AppException;
 import com.springboot.spring_boot_app.exception.ErrorCode;
+import com.springboot.spring_boot_app.repository.RoleRepository;
 import com.springboot.spring_boot_app.repository.UserRepositoty;
 
 import lombok.AccessLevel;
@@ -30,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserService {
     UserRepositoty userRepositoty;
+    RoleRepository roleRepository;
     PasswordEncoder passwordEncoder;
     public User createUser(UserCreationRequest request){
         User user = new User();
@@ -43,10 +43,11 @@ public class UserService {
         user.setDoB(request.getDoB());
         HashSet<String> roles = new HashSet<String>();
         roles.add(Role.USER.name());
-        user.setRoles(roles);
+        // user.setRoles(roles);
         return userRepositoty.save(user);
     }
 
+    // @PreAuthorize("hasAuthority('APPROVE_POST')")
     @PreAuthorize("hasRole('ADMIN')") // Kiểm tra trc khi vào method
     public List<User>getUsers(){
         log.info("In method get users");
@@ -69,10 +70,12 @@ public class UserService {
 
     public User updateUser(String userId, UserUpdateRequest request){
         User user = getUser(userId);
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setDoB(request.getDoB());
+        var roles = roleRepository.findAllById(request.getRoles());
+        user.setRoles(new HashSet<>(roles));
         return userRepositoty.save(user);
     }
     public void deleteUser(String userId){
