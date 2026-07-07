@@ -78,6 +78,11 @@
 			<artifactId>lombok</artifactId>
 			<scope>annotationProcessor</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security-oauth2-resource-server</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -145,10 +150,10 @@
 				</executions>
 				<configuration>
 					<excludes>
-						<exclude>com/devteria/identityservice/dto/**</exclude>
-						<exclude>com/devteria/identityservice/entity/**</exclude>
-						<exclude>com/devteria/identityservice/mapper/**</exclude>
-						<exclude>com/devteria/identityservice/configuration/**</exclude>
+						<exclude>com/spingboot/spring_boot_app/dto/**</exclude>
+						<exclude>com/spingboot/spring_boot_app/entity/**</exclude>
+						<exclude>com/spingboot/spring_boot_app/mapper/**</exclude>
+						<exclude>com/spingboot/spring_boot_app/configuration/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

@@ -1,6 +1,7 @@
 package com.springboot.spring_boot_app.dto.response;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,9 +17,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserResponse {
     String id;
-    String username;
-    String password;
+    String username;    
     String firstName;
     String lastName;
     LocalDate doB;
+    Set<String> roles;
 }
