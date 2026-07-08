@@ -16,7 +16,7 @@ import com.springboot.spring_boot_app.enums.Role;
 import com.springboot.spring_boot_app.exception.AppException;
 import com.springboot.spring_boot_app.exception.ErrorCode;
 import com.springboot.spring_boot_app.repository.RoleRepository;
-import com.springboot.spring_boot_app.repository.UserRepositoty;
+import com.springboot.spring_boot_app.repository.UserRepository;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @FieldDefaults(level = AccessLevel.PRIVATE,makeFinal = true)
 @Slf4j
 public class UserService {
-    UserRepositoty userRepositoty;
+    UserRepository userRepositoty;
     RoleRepository roleRepository;
     PasswordEncoder passwordEncoder;
     public User createUser(UserCreationRequest request){

@@ -24,7 +24,6 @@ public class DobValidator implements ConstraintValidator<DobConstraint,LocalDate
 
     @Override
     public void initialize(DobConstraint constraintAnnotation) {
-        // TODO Auto-generated method stub
         ConstraintValidator.super.initialize(constraintAnnotation);
         min = constraintAnnotation.min();
     }

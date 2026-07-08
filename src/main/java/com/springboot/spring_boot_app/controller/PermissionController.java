@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.spring_boot_app.dto.request.ApiResponse;
 import com.springboot.spring_boot_app.dto.request.PermissionRequest;
-import com.springboot.spring_boot_app.dto.response.PermissionResponse;
 import com.springboot.spring_boot_app.entity.Permission;
 import com.springboot.spring_boot_app.service.PermissionService;
 

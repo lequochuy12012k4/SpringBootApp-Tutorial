@@ -7,6 +7,8 @@ import com.nimbusds.jose.JOSEException;
 import com.springboot.spring_boot_app.dto.request.ApiResponse;
 import com.springboot.spring_boot_app.dto.request.AuthenticationRequest;
 import com.springboot.spring_boot_app.dto.request.IntrospectRequest;
+import com.springboot.spring_boot_app.dto.request.LogoutRequest;
+import com.springboot.spring_boot_app.dto.request.RefreshRequest;
 import com.springboot.spring_boot_app.dto.response.AuthenticationResponse;
 import com.springboot.spring_boot_app.dto.response.IntrospectResponse;
 import com.springboot.spring_boot_app.service.AuthenticationService;
@@ -34,11 +36,24 @@ public class AuthenticationController {
             .result(result)
             .build(); 
     }
+    @PostMapping("/refresh")
+    ApiResponse<AuthenticationResponse> refreshToken(@RequestBody RefreshRequest request) throws ParseException, JOSEException{
+        var result = authenticationService.refreshToken(request);
+        return ApiResponse.<AuthenticationResponse>builder()
+            .result(result)
+            .build(); 
+    }
     @PostMapping("/introspect")
     ApiResponse<IntrospectResponse> introspect(@RequestBody IntrospectRequest request) throws ParseException, JOSEException{
         var result = authenticationService.introspect(request);
         return ApiResponse.<IntrospectResponse>builder()
             .result(result)
+            .build(); 
+    }
+    @PostMapping("/logout")
+    ApiResponse<Void> logout(@RequestBody LogoutRequest request) throws ParseException, JOSEException{
+        authenticationService.logout(request);
+        return ApiResponse.<Void>builder()
             .build(); 
     }
 }

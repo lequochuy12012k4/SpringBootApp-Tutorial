@@ -28,7 +28,7 @@ public class RoleService {
         role.setDescription(request.getDescription());
 
         var permissions = permissionRepository.findAllById(request.getPermissions());
-        role.setPermission(new HashSet<>(permissions));
+        role.setPermissions(new HashSet<>(permissions));
         return roleRepository.save(role);
     }
     public List<Role> getAllRoles(){

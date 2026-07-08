@@ -2,8 +2,6 @@ package com.springboot.spring_boot_app.dto.request;
 
 import java.time.LocalDate;
 
-import com.springboot.spring_boot_app.constraint.DobConstraint;
-
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,6 @@ package com.springboot.spring_boot_app.configuration;
 
 import java.util.HashSet;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.springboot.spring_boot_app.entity.User;
 import com.springboot.spring_boot_app.enums.Role;
-import com.springboot.spring_boot_app.repository.UserRepositoty;
+import com.springboot.spring_boot_app.repository.UserRepository;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class ApplicationInitConfig {
     PasswordEncoder passwordEncoder;
 
     @Bean
-    ApplicationRunner applicationRunner(UserRepositoty userRepositoty){
+    ApplicationRunner applicationRunner(UserRepository userRepositoty){
         return args ->{
             if(userRepositoty.findByUsername("admin").isEmpty()){
                 var roles = new HashSet<String>();

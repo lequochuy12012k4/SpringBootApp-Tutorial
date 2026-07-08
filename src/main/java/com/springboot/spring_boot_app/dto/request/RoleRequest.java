@@ -2,8 +2,6 @@ package com.springboot.spring_boot_app.dto.request;
 
 import java.util.Set;
 
-import com.springboot.spring_boot_app.entity.Permission;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
