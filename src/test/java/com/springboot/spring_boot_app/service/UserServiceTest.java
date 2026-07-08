@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
@@ -23,6 +25,7 @@ import com.springboot.spring_boot_app.entity.User;
 import com.springboot.spring_boot_app.exception.AppException;
 import com.springboot.spring_boot_app.repository.UserRepository;
 
+import lombok.With;
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
@@ -79,7 +82,7 @@ public class UserServiceTest {
         Assertions.assertThat(response.getUsername()).isEqualTo("lequochuy");
     }
 
-     @Test
+    @Test
     void createUser_userExisted_fail(){
         //GIVEN
         Mockito.when(userRepository.existsByUsername(anyString())).thenReturn(true);
@@ -88,5 +91,30 @@ public class UserServiceTest {
         var exception = assertThrows(AppException.class, ()->userService.createUser(request));
         Assertions.assertThat(exception.getErrorCode().getCode()).isEqualTo(1002);
         Assertions.assertThat(exception.getErrorCode().getMessage()).isEqualTo("User existed");
+    }
+
+    @Test
+    @WithMockUser(username = "john")
+    void getMyInfo_success(){
+        //GIVEN
+        Mockito.when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(user)); 
+
+        //WHEN
+        var response = userService.getMyInfo();
+        Assertions.assertThat(response.getUsername()).isEqualTo("lequochuy");
+        Assertions.assertThat(response.getId()).isEqualTo("97f340ef");
+    }
+
+     
+    @Test
+    @WithMockUser(username = "lequochuy")
+    void getMyInfo_userNotFound(){
+        //GIVEN
+        Mockito.when(userRepository.findByUsername(anyString())).thenReturn(Optional.ofNullable(user)); 
+
+        //WHEN
+        var exception = assertThrows(AppException.class, ()->userService.getMyInfo());
+        Assertions.assertThat(exception.getErrorCode().getCode()).isEqualTo(1005);
+        Assertions.assertThat(exception.getErrorCode().getMessage()).isEqualTo("User not found");
     }
 }
