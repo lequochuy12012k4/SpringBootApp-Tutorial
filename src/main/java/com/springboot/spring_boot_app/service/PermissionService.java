@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.springboot.spring_boot_app.dto.request.PermissionRequest;
-import com.springboot.spring_boot_app.dto.response.PermissionResponse;
 import com.springboot.spring_boot_app.entity.Permission;
-import com.springboot.spring_boot_app.mapper.PermissionMapper;
 import com.springboot.spring_boot_app.repository.PermissionRepository;
 
 import lombok.AccessLevel;

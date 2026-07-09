@@ -11,7 +11,6 @@ import java.util.Optional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +24,6 @@ import com.springboot.spring_boot_app.entity.User;
 import com.springboot.spring_boot_app.exception.AppException;
 import com.springboot.spring_boot_app.repository.UserRepository;
 
-import lombok.With;
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest

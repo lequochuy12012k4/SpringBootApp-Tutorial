@@ -3,6 +3,7 @@ package com.springboot.spring_boot_app.service;
 import java.util.HashSet;
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,18 +34,23 @@ public class UserService {
     PasswordEncoder passwordEncoder;
     public User createUser(UserCreationRequest request){
         User user = new User();
-        if(userRepositoty.existsByUsername(request.getUsername())){
-            throw new AppException(ErrorCode.USER_EXISTED);
-        }
+        
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setDoB(request.getDoB());
+        
         HashSet<String> roles = new HashSet<String>();
         roles.add(Role.USER.name());
         // user.setRoles(roles);
-        return userRepositoty.save(user);
+
+        try {
+            user = userRepositoty.save(user);
+        } catch (DataIntegrityViolationException exception) {
+            throw new AppException(ErrorCode.USER_EXISTED);
+        }   
+        return user;
     }
 
     // @PreAuthorize("hasAuthority('APPROVE_POST')")
